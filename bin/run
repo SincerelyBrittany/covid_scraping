@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative "../lib/environment"
+
+Covid19CDC::CLI.new.start
