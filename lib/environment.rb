@@ -2,10 +2,12 @@ require_relative "covid19CDC/version"
 
 require 'nokogiri'
 require 'open-uri'
-require 'HTTParty'
 require 'net/http'
 require 'json'
 require 'pry'
+require 'httparty'
+require 'json'
+require 'stringio'
 require 'watir'
 
 require_relative "./cli"

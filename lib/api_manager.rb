@@ -11,6 +11,15 @@ class Covid19CDC::APIManager
       new_cases = doc.css("span.new-cases")[0].text
       new_deaths = doc.css("span.new-cases")[1].text
 
+      response = HTTParty.get('https://www.cdc.gov/coronavirus/2019-ncov/json/us-cases-map-data.json')
+      body = StringIO.new(response.body)
+      data = JSON.parse(response.body.force_encoding('utf-8').sub(/\A\xEF\xBB\xBF/, ''))
+      binding.pry
+      # body.set_encoding_by_bom
+      # data = JSON.parse(body.gets(nil))
+      #=> [{"Jurisdiction"=>"Alabama", "Range"=>"10,001 to 20,000", "Cases Reported"=>10145,  ...
+      #data = JSON.parse(response.body.force_encoding('utf-8').sub(/\A\xEF\xBB\xBF/, ''))
+
     end
 
     def self.search_by_county
