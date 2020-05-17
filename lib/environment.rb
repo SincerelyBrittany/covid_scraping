@@ -12,7 +12,7 @@ require 'watir'
 
 require_relative "./cli"
 require_relative "./api_manager"
-#require_relative "./cdc_scraper"
+require_relative "./cdc_scraper"
 
 module Covid19CDC
   class Error < StandardError; end
