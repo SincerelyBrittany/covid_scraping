@@ -10,25 +10,42 @@ class Covid19CDC::Scraper
     def self.search_array
         @@search_array
     end
-
-    def self.mass_create_from_api(newsarr)
+    #total_cases: total_cases, total_deaths: total_deaths, new_cases: new_cases, new_deaths:new_deaths
+    def self.mass_create_from_api(newsarr, second_array)
+       second_array.each do |newshash|
+            new(newshash[:total_cases],
+              newshash[:total_deaths],
+              newshash[:new_cases],
+              newshash[:new_deaths]
+              )
+        end
         newsarr.each do |newshash|
             new(newshash[:state],
               newshash[:url],
               newshash[:cases_reported],
-              newshash[:tranmission],
+              newshash[:tranmission]
               )
         end
-        # binding.pry
+        binding.pry
     end
 
-    attr_accessor :state, :url, :cases_reported, :tranmission
+    attr_accessor :state, :url, :cases_reported, :tranmission, :total_cases, :total_deaths, :new_cases, :new_deaths
 
     def initialize(state, url, cases_reported, tranmission)
         @state = state
         @url = url
         @cases_reported = cases_reported
         @tranmission = tranmission
+        @total_cases = total_cases
+        @total_deaths = total_deaths
+        @new_cases = new_cases
+        @new_deaths = new_deaths
+        save
+        test
+    end
+
+    def test
+      binding.pry
     end
 
     def to_s
